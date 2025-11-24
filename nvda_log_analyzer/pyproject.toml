@@ -1,0 +1,28 @@
+[project]
+name = "nvda_log_analyzer"
+version = "0.3.0"
+requires-python = ">=3.10"
+dependencies = [
+    "click",
+    "fastapi",
+    "pydantic",
+    "uvicorn",
+    "pytest"
+]
+
+
+[project.scripts]
+log_analyzer = "analyzer.cli:main"
+log_analyzer_api = "analyzer.api:app"
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
