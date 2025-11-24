@@ -9,7 +9,8 @@ dependencies = [
     "uvicorn",
     "pytest",
     "httpx",
-    "requests"
+    "requests",
+    "python-multipart"
 ]
 
 

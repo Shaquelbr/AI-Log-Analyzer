@@ -5,11 +5,15 @@ NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
 
 NVIDIA_ENDPOINT = "https://integrate.api.nvidia.com/v1/chat/completions"
 
-def summarize_logs(text):
+def summarize_logs(logs):
     """Local fallback summarizer using simple heuristics"""
-    lines = text.splitlines()
+    if isinstance(logs, list):
+        lines = logs
+    else:
+        lines = logs.splitlines()
+
     short = [l for l in lines if len(l) < 200]
-    return " | ".join(short[:10]) if short else text[:500]
+    return " | ".join(short[:10]) if short else (logs[:500] if isinstance(logs, str) else " ".join(logs)[:500])
 
 
 def analyze_with_nim(text, model="meta/llama-3.1-8b-instruct"):
